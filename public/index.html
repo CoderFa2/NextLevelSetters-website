@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Level Setters</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom colors */
+        .bg-primary { background-color: #FF914D; }
+        .bg-secondary { background-color: #C78F6D; }
+        .bg-quaternary { background-color: #ECE2D8; }
+        .text-primary { color: #FF914D; }
+        .text-secondary { color: #C78F6D; }
+        .text-quaternary { color: #ECE2D8; }
+        .banner-overlay {
+            background: linear-gradient(135deg, #FF914D 0%, #C78F6D 100%);
+            padding: 4rem;
+            border-radius: 0.5rem;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+            opacity: 0.1;
+        }
+        .banner-decoration {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 150%;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        .typed-cursor {
+            font-size: 1.5em;
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+      
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .benefit-box {
+            background-color: #ECE2D8;
+            color: #333;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .benefit-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefit-box p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #FF914D;
+        }
+
+        .benefit-icon svg {
+            width: 64px;
+            height: 64px;
+            fill: #FF914D;
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-description {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+
+        .text-orange-500 {
+    color: #FF914D;
+}
+.text-white {
+    color: #fafafa;/* Witte kleur */
+}
+.text-black {
+    color: #000000; /* Witte kleur */
+}
+
+.logo {
+    max-width: 140px; /* Initiële breedte van het logo */
+    height: auto; /* Automatische hoogte om de verhoudingen te bewaren */
+}
+
+@media (max-width: 768px) {
+    .logo {
+        max-width: 100px; /* Verklein het logo op tablets en kleinere schermen */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        max-width: 50px; /* Nog verder verkleinen op smartphones */
+    }
+}
+
+.logo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 8px; /* Voegt wat padding toe rondom het logo */
+    background-color: rgba(255, 255, 255, 0.8); /* Witte achtergrond met transparantie */
+    display: flex;
+    align-items: center;
+    z-index: 1000; /* Zorgt ervoor dat het logo boven andere elementen blijft */
+}
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+    }
+
+    .custom-heading {
+        color: #000000; /* Zwarte kleur */
+        position: relative;
+        display: inline-block;
+        text-align: center; /* Zorgt ervoor dat de tekst gecentreerd is */
+    }
+
+    .custom-heading::after {
+        content: '';
+        display: block;
+        width: 50px;  /* Maak de streep veel korter */
+        height: 4px; /* Hoogte van de streep */
+        background-color: #FF914D; /* Oranje kleur */
+        position: absolute;
+        bottom: -10px; /* Afstand van de tekst */
+        left: 50%; 
+        transform: translateX(-50%);
+    }
+
+
+    .testimonial-text {
+        text-align: center; /* Tekst naar links uitlijnen */
+    }
+    .custom-button {
+        border: 2px solid #FF914D; /* Oranje rand */
+        color: #FFFFFF; /* Witte tekst */
+        background-color: transparent; /* Transparante achtergrond */
+        transition: background-color 0.3s, color 0.3s; /* Gladde overgang voor achtergrondkleur en tekstkleur */
+    }
+
+    .custom-button:hover {
+        background-color: #FF914D; /* Oranje achtergrond bij hover */
+        color: #FFFFFF; /* Witte tekst bij hover */
+    }
+
+    .custom-button:focus {
+        border-color: #FF914D; /* Oranje rand bij focus */
+        box-shadow: 0 0 0 3px rgba(255, 145, 77, 0.5); /* Schaduw bij focus */
+    }
+
+    .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .creative-box {
+            width: 100%;
+            max-width: 1000px;
+            background: #fff;
+            border:  2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .creative-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .creative-box-content {
+            padding: 32px;
+        }
+
+        .creative-box-content h5 {
+            margin-bottom: 24px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #FF914D;
+            padding-bottom: 10px;
+        }
+
+        .creative-box-content p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #FF914D;
+            font-weight: bold;
+        }
+
+        .text-black{
+            color: #000000;
+        }
+
+        .image-container {
+    height: 300px; /* Je gewenste vaste hoogte */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-quaternary); /* Gebruik een CSS variabele of zet hier de gewenste kleur */
+    border-radius: 1rem; /* Grotere afgeronde hoeken */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Duidelijke rand */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover {
+    transform: scale(1.05);
+}
+
+.image {
+    height: 100%;
+    width: auto;
+    object-fit: contain; /* Behoudt de originele verhoudingen van de afbeelding */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Definieer je custom kleur hier als CSS variabele */
+:root {
+    --color-quaternary: #ECE2D8; /* Vervang dit door je gewenste kleur */
+}
+
+.footer {
+    background-color: #1a202c; /* Tailwind's bg-gray-800 */
+    color: #ffffff; /* Tailwind's text-white */
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer .flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer img.footer-logo {
+    height: 40px; /* Pas dit aan naar de gewenste hoogte van je logo */
+    width: auto; /* Zorg ervoor dat de breedte automatisch wordt aangepast */
+    margin-bottom: 1rem;
+}
+
+.footer h3 {
+    font-size: 1.25rem; /* Tailwind's text-2xl */
+    margin-bottom: 1rem;
+    font-weight: 600; /* Tailwind's font-semibold */
+}
+
+.footer p, .footer a {
+    color: #a0aec0; /* Tailwind's text-gray-400 */
+}
+
+.footer a:hover {
+    color: #ffffff; /* Tailwind's hover:text-white */
+}
+
+.footer .space-y-2 > * + * {
+    margin-top: 0.5rem; /* Tailwind's space-y-2 */
+}
+
+.footer .border-t {
+    border-top: 1px solid #4a5568; /* Tailwind's border-gray-700 */
+}
+
+.footer .text-sm {
+    font-size: 0.875rem; /* Tailwind's text-sm */
+}
+
+.footer .text-center {
+    text-align: center;
+}
+
+.footer .w-full {
+    width: 100%;
+}
+
+.footer .sm\:w-1\/2 {
+    width: 50%;
+}
+
+.footer .lg\:w-1\/4 {
+    width: 25%;
+}
+
+.contact-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ECE2D8;
+            color: #FF914D; /* Oranje kleur */
+            padding: 0.25rem; /* Veel dunner */
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Zorgt ervoor dat de banner boven andere elementen blijft */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-banner button {
+            background-color: #FF914D;
+            color: #ffffff; /* Oranje kleur */
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact-banner button:hover {
+            background-color: #ECE2D8;
+            transform: scale(1.05);
+        }
+
+        .inline-flex {
+  display: inline-flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.bg-orange-500 {
+  background-color: #FF914D;
+}
+
+.hover\:bg-orange-600:hover {
+  background-color: #ea580c;
+}
+
+.transition {
+  transition: background-color 0.3s;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px; /* Afgeronde hoeken voor de container */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1); /* Schaduw */
+    transition: transform 0.3s ease-in-out; /* Vloeiende overgang */
+}
+
+.creative-image {
+    width: 66.6667%; /* w-2/3 */
+    height: auto;
+    border-radius: 15px; /* Afgeronde hoeken */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1); /* Schaduw */
+    transition: transform 0.3s ease-in-out; /* Vloeiende overgang */
+}
+
+.creative-image:hover {
+    transform: scale(1.05); /* Schaal de afbeelding een beetje bij hover */
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.creative-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.creative-box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h5 {
+    font-size: 1.25rem; /* Tekstgrootte aangepast voor betere leesbaarheid */
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1rem; /* Tekstgrootte aangepast voor betere leesbaarheid */
+    margin-bottom: 1rem;
+}
+
+.button-container {
+    margin-top: 1rem;
+}
+
+button {
+    background-color: #ff6b00; /* Oranje kleur */
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #ff7f24; /* Lichtere oranje kleur bij hover */
+    transform: scale(1.05);
+}
+
+.creative-image {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    .creative-box {
+        flex-direction: column;
+    }
+
+    .creative-box-content, .creative-image {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    h5 {
+        font-size: 1.125rem; /* Iets kleinere tekstgrootte voor kleinere schermen */
+    }
+
+    p {
+        font-size: 0.875rem; /* Iets kleinere tekstgrootte voor kleinere schermen */
+    }
+
+    button {
+        padding: 0.5rem 1.5rem; /* Kleinere knoppen voor kleinere schermen */
+    }
+}
+    </style>
+    <!-- Typed.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+
+<div class="logo-container">
+    <img src="Images/Kopie van Logo's NLS.png" alt="NextLevelSetters Logo" class="logo">
+</div>
+<body class="bg-quaternary text-black">
+<!-- Hero Section -->
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
+    <p class="mx-auto -mt-4 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6 text-black">Welkom bij 
+        <span class="border-b border-dotted border-slate-300 text-orange-500">Nextlevelsetters</span>
+    </p>
+
+    <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+        <span class="inline-block text-black">Start <!-- Hier toegevoegd: text-white -->
+            <span class="relative whitespace-nowrap text-orange-600">
+                <svg aria-hidden="true" viewBox="0 0 418 42" class="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70" preserveAspectRatio="none"><path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path></svg>
+            <span class="relative text-orange-500">Vandaag</span></span>
+        </span>
+        <span class="inline-block text-black">Gratis</span>
+    </h1>
+
+    <p class="mx-auto mt-9 max-w-2xl text-lg tracking-tight text-slate-700 sm:mt-6">
+        <span class="inline-block text-black">Met online geld verdienen naast je baan of studie</span>
+        <span class="inline-block text-black">met de populaire skill appointment setting.</span>
+    </p>
+
+    <div class="mt-12 flex flex-col justify-center gap-y-5 sm:mt-10 sm:flex-row sm:gap-y-0 sm:gap-x-6">
+        <a class="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-black hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900 animate-fade-in-left" href="#">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" role="img" viewBox="0 0 24 24" aria-hidden="true" class="h-3 w-3 flex-none" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.824 7.287c.008 0 .004 0 0 0zm-2.8-1.4c.006 0 .003 0 0 0zm16.754 2.161c-.505-1.215-1.53-2.528-2.333-2.943.654 1.283 1.033 2.57 1.177 3.53l.002.02c-1.314-3.278-3.544-4.6-5.366-7.477-.091-.147-.184-.292-.273-.446a3.545 3.545 0 01-.13-.24 2.118 2.118 0 01-.172-.46.03.03 0 00-.027-.03.038.038 0 00-.021 0l-.006.001a.037.037 0 00-.01.005L15.624 0c-2.585 1.515-3.657 4.168-3.932 5.856a6.197 6.197 0 00-2.305.587.297.297 0 00-.147.37c.057.162.24.24.396.17a5.622 5.622 0 012.008-.523l.067-.005a5.847 5.847 0 011.957.222l.095.03a5.816 5.816 0 01.616.228c.08.036.16.073.238.112l.107.055a5.835 5.835 0 01.368.211 5.953 5.953 0 012.034 2.104c-.62-.437-1.733-.868-2.803-.681 4.183 2.09 3.06 9.292-2.737 9.02a5.164 5.164 0 01-1.513-.292 4.42 4.42 0 01-.538-.232c-1.42-.735-2.593-2.121-2.74-3.806 0 0 .537-2 3.845-2 .357 0 1.38-.998 1.398-1.287-.005-.095-2.029-.9-2.817-1.677-.422-.416-.622-.616-.8-.767a3.47 3.47 0 00-.301-.227 5.388 5.388 0 01-.032-2.842c-1.195.544-2.124 1.403-2.8 2.163h-.006c-.46-.584-.428-2.51-.402-2.913-.006-.025-.343.176-.389.206-.406.29-.787.616-1.136.974-.397.403-.76.839-1.085 1.303a9.816 9.816 0 00-1.562 3.52c-.003.013-.11.487-.19 1.073-.013.09-.026.181-.037.272a7.8 7.8 0 00-.069.667l-.002.034-.023.387-.001.06C.386 18.795 5.593 24 12.016 24c5.752 0 10.527-4.176 11.463-9.661.02-.149.035-.298.052-.448.232-1.994-.025-4.09-.753-5.844z"></path>
+            </svg>
+            <span class="ml-3">Start vandaag</span>
+        </a>
+    
+        <div class="relative flex flex-1 flex-col items-stretch sm:flex-row sm:items-center sm:flex-none" data-headlessui-state="">
+            <button class="inline-flex items-center justify-center rounded-full py-2 px-4 text-sm text-white bg-orange-500 hover:bg-orange-600 transition duration-300">
+                Join de gratis cursus
+            </button>
+        </div>
+    </div>
+    
+            
+        </div>
+    </div>
+
+</div>
+
+  <!-- Floating Contact Banner -->
+  <div class="contact-banner">
+    <button>
+        Stuur mij een dm
+    </button>
+</div>
+<!-- Benefits Section -->
+<section id="waarom-doelstellingen-zetten" class="bg-quaternary">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-black custom-heading">Wat ontvang je in deze gratis cursus</h2>
+            <p class="mt-3 text-xl text-gray-700">10 modules over basis van appointment setting en wat je nodig hebt om hier geld mee te verdienen.</p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Benefit Box 1: Extra Inkomen -->
+            <div class="benefit-box bg-white p-6 rounded-lg shadow-md">
+                <div class="flex flex-col items-center">
+                    <img src="Images/dollar.png" alt="Geld icoon" class="h-12 w-12 mb-4">
+                    <h3 class="text-lg font-semibold text-black ">Master de skill</h3>
+                </div>
+                <p class="mt-4 text-base text-gray-600 text-center">Hoe je naast je baan of studie een extra inkomen kan genereren.
+
+                </p>
+            </div>
+
+            <!-- Benefit Box 2: Toegang tot Community -->
+            <div class="benefit-box bg-white p-6 rounded-lg shadow-md">
+                <div class="flex flex-col items-center">
+                    <img src="Images/circle.png" alt="Community icoon" class="h-12 w-12 mb-4">
+                    <h3 class="text-lg font-semibold text-black">Vind jouw droom klant om voor te setten</h3>
+                </div>
+                <p class="mt-4 text-base text-gray-600 text-center">Gratis toegang tot onze community van gelijkgestemden.</p>
+            </div>
+
+            <!-- Benefit Box 3: Casestudy -->
+            <div class="benefit-box bg-white p-6 rounded-lg shadow-md">
+                <div class="flex flex-col items-center">
+                    <img src="Images/book.png" alt="Boek icoon" class="h-12 w-12 mb-4">
+                    <h3 class="text-lg font-semibold text-black">Start met verdienen</h3>
+                </div>
+                <p class="mt-4 text-base text-gray-600 text-center">Plan gekwalificeerde afspraken in en verdien een percentage per sale</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="center-container bg-quaternary py-8">
+    <div class="creative-box flex flex-col md:flex-row items-center max-w-screen-lg mx-auto">
+        <div class="creative-box-content md:w-1/2 p-4 flex flex-col justify-center items-center text-center">
+            <h5 class="mb-4 text-xl font-bold">Next Level Setters is het meest persoonlijke appointment setting traject wat je in Nederland en België kunt krijgen.</h5>
+            <p class="mb-4 text-lg">Ontdek de kracht van appointment setten bij <span class="highlight">Next Level Setters</span> en leer van ervaren coaches die zelf nog in het werkveld zitten. Krijg toegang tot bewezen strategieën en praktische ervaring en start met het masteren van een high income skill om overal ter wereld geld te kunnen verdienen.</p>
+            <div class="button-container mt-4">
+                <button class="bg-orange-500 text-white py-3 px-8 rounded-full font-bold transition duration-300 ease-in-out hover:bg-primary-light shadow-lg transform hover:scale-105">Join de gratis cursus</button>
+            </div>
+        </div>
+        <div class="md:w-1/2 p-4 flex justify-center">
+            <img src="Images/Afbeelding van WhatsApp op 2024-07-31 om 20.50.01_6e874e8b.jpg" alt="Description of image" class="creative-image rounded-lg shadow-lg max-w-full">
+        </div>
+    </div>
+</section>
+
+
+<!-- About Section -->
+<div class="flex justify-center my-8">
+    <button class="inline-flex items-center justify-center rounded-full py-3 px-6 text-lg text-white bg-orange-500 hover:bg-gray-200 transition duration-300">
+        Join de gratis cursus
+    </button>
+</div>
+
+<!-- Testimonials Section -->
+<section class="py-16">
+    <div class="container mx-auto text-center px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center custom-heading">Testimonials</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (1).PNG" alt="Testimonial 1" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (2).PNG" alt="Testimonial 2" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (3).PNG" alt="Testimonial 3" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (4).PNG" alt="Testimonial 4" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (5).PNG" alt="Testimonial 5" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (6).PNG" alt="Testimonial 6" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (7).PNG" alt="Testimonial 7" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (8).PNG" alt="Testimonial 8" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (9).PNG" alt="Testimonial 9" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (10).PNG" alt="Testimonial 10" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (11).PNG" alt="Testimonial 11" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (12).PNG" alt="Testimonial 12" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container bg-quaternary">
+                    <img src="Images/1 (13).PNG" alt="Testimonial 13" class="image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Results Section -->
+<section class="py-16">
+    <div class="container mx-auto text-center px-4">
+        <h2 class="text-4xl font-bold mb-8 text-primary custom-heading">Resultaten</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="relative group">
+                <div class="image-container">
+                    <img src="Images/2 (1).JPG" alt="Resultaat 1" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container">
+                    <img src="Images/2 (2).PNG" alt="Resultaat 2" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container">
+                    <img src="Images/2 (3).PNG" alt="Resultaat 3" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container">
+                    <img src="Images/2 (4).JPG" alt="Resultaat 4" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container">
+                    <img src="Images/2 (5).JPG" alt="Resultaat 5" class="image">
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="image-container">
+                    <img src="Images/2 (6).JPG" alt="Resultaat 6" class="image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<div class="flex justify-center my-8">
+    <button class="inline-flex items-center justify-center rounded-full py-3 px-6 text-lg text-white bg-orange-500 hover:bg-gray-200 transition duration-300">
+        Join de gratis cursus
+    </button>
+</div>
+
+
+  <!-- Footer -->
+  <footer class="bg-quaternary text-black py-10 mt-10">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <!-- Logo Text -->
+        <div class="flex items-center mb-6 md:mb-0">
+            <h1 class="text-3xl font-bold text-black">
+                NEXTLEVELSETTERS<span class="text-orange-500">.</span>
+            </h1>
+        </div>
+<!-- Social Links with Text -->
+<div class="flex flex-col items-center mb-6 md:mb-0">
+    <p class="mb-4 text-lg font-semibold">Volg ons op de socials</p>
+    <div class="flex space-x-6">
+        <a href="https://instagram.com" target="_blank" class="transition duration-300">
+            <img src="Images/instagram.svg" alt="Instagram" class="h-8 w-8">
+        </a>
+        <a href="https://tiktok.com" target="_blank" class="transition duration-300">
+            <img src="Images/tiktok.svg" alt="TikTok" class="h-8 w-8">
+        </a>
+    </div>
+</div>
+
+
+
+        <!-- Link to Course -->
+        <button class="inline-flex items-center justify-center rounded-full py-3 px-6 text-lg text-white bg-orange-500 hover:bg-gray-200 transition duration-300">
+            Join de gratis cursus
+        </button>
+    </div>
+</footer>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var typed = new Typed("#typed-text", {
+                strings: ["Start vandaag nog GRATIS met online geld verdienen", "Bereik je financiële doelen", "Doe het naast je baan of studie"],
+                typeSpeed: 50,
+                backSpeed: 25,
+                startDelay: 500,
+                backDelay: 1500,
+                loop: true,
+                cursorChar: '|',
+                shuffle: true,
+            });
+        });
+    </script>
+</body>
+</html>
