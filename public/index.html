@@ -590,13 +590,14 @@ button:hover {
                 <span class="ml-3">Start vandaag</span>
             </a>
         
-            <!-- MailerLite Trigger Button -->
-            <button class="ml-onclick-form inline-flex items-center justify-center rounded-full py-2 px-4 text-sm text-white bg-orange-500 hover:bg-orange-600 transition duration-300" onclick="ml('show', 'fqCekF', true)">Join de gratis cursus</button>
+             <button id="customMailerLiteButton" class="inline-flex items-center justify-center rounded-full py-2 px-4 text-sm text-white bg-orange-500 hover:bg-orange-600 transition duration-300">
+                Join de gratis cursus
+            </button>
         </div>
     </div>
 
-    <!-- MailerLite Embedded Form (onzichtbaar) -->
-    <div>
+  <!-- MailerLite Embedded Form (initieel verborgen) -->
+    <div id="ml-form-container">
         <div class="ml-embedded" data-form="fqCekF"></div>
     </div>
 </body>
@@ -865,31 +866,17 @@ button:hover {
 
 
 
-<script src="https://assets.mailerlite.com/js/universal.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Initieer het Typed.js effect
-        var typed = new Typed("#typed-text", {
-            strings: ["Start vandaag nog GRATIS met online geld verdienen", "Bereik je financiële doelen", "Doe het naast je baan of studie"],
-            typeSpeed: 50,
-            backSpeed: 25,
-            startDelay: 500,
-            backDelay: 1500,
-            loop: true,
-            cursorChar: '|',
-            shuffle: true,
-        });
+        document.addEventListener("DOMContentLoaded", function() {
+            var mlButton = document.getElementById('customMailerLiteButton');
+            var mlFormContainer = document.getElementById('ml-form-container');
 
-        // MailerLite Event Listener voor je aangepaste a href link
-        var mailerLiteLink = document.getElementById('customMailerLiteLink');
-        if (mailerLiteLink) {
-            mailerLiteLink.addEventListener('click', function(event) {
-                event.preventDefault(); // Voorkomt dat de link naar een andere pagina gaat
-                ml('show', 'fqCekF', true); // Zorg ervoor dat de ID 'fqCekF' correct is
+            mlButton.addEventListener('click', function() {
+                // Formulier zichtbaar maken
+                mlFormContainer.style.display = 'block';
             });
-        }
-    });
-</script>
+        });
+    </script>
 
 </body>
 </html>
