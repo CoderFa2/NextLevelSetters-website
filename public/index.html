@@ -575,12 +575,10 @@ button:hover {
             <span class="ml-3">Start vandaag</span>
         </a>
     
-        <a href="https://www.skool.com/next-level-setters-5796/about" target="_blank">
-            <button class="inline-flex items-center justify-center rounded-full py-2 px-4 text-sm text-white bg-orange-500 hover:bg-orange-600 transition duration-300">
-                Join de gratis cursus
-            </button>
-        </a>
-        
+ <button id="customMailerLiteButton" class="inline-flex items-center justify-center rounded-full py-2 px-4 text-sm text-white bg-orange-500 hover:bg-orange-600 transition duration-300">
+    Join de gratis cursus
+</button>
+
     
             
         </div>
@@ -851,19 +849,30 @@ button:hover {
 
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var typed = new Typed("#typed-text", {
-                strings: ["Start vandaag nog GRATIS met online geld verdienen", "Bereik je financiële doelen", "Doe het naast je baan of studie"],
-                typeSpeed: 50,
-                backSpeed: 25,
-                startDelay: 500,
-                backDelay: 1500,
-                loop: true,
-                cursorChar: '|',
-                shuffle: true,
-            });
+   <script src="https://assets.mailerlite.com/js/universal.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initieer het Typed.js effect
+        var typed = new Typed("#typed-text", {
+            strings: ["Start vandaag nog GRATIS met online geld verdienen", "Bereik je financiële doelen", "Doe het naast je baan of studie"],
+            typeSpeed: 50,
+            backSpeed: 25,
+            startDelay: 500,
+            backDelay: 1500,
+            loop: true,
+            cursorChar: '|',
+            shuffle: true,
         });
-    </script>
+
+        // MailerLite Event Listener voor je aangepaste knop
+        var mailerLiteButton = document.getElementById('customMailerLiteButton');
+        if (mailerLiteButton) {
+            mailerLiteButton.addEventListener('click', function() {
+                ml('show', 'fqCekF', true); // Zorg ervoor dat de ID 'fqCekF' correct is
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
