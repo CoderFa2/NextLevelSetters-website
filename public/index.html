@@ -575,9 +575,9 @@ button:hover {
             <span class="ml-3">Start vandaag</span>
         </a>
     
- <button id="customMailerLiteButton" class="inline-flex items-center justify-center rounded-full py-2 px-4 text-sm text-white bg-orange-500 hover:bg-orange-600 transition duration-300">
+<a href="javascript:void(0);" id="customMailerLiteLink" class="inline-flex items-center justify-center rounded-full py-2 px-4 text-sm text-white bg-orange-500 hover:bg-orange-600 transition duration-300">
     Join de gratis cursus
-</button>
+</a>
 
     
             
@@ -849,7 +849,7 @@ button:hover {
 
 
 
-   <script src="https://assets.mailerlite.com/js/universal.js"></script>
+<script src="https://assets.mailerlite.com/js/universal.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Initieer het Typed.js effect
@@ -864,10 +864,11 @@ button:hover {
             shuffle: true,
         });
 
-        // MailerLite Event Listener voor je aangepaste knop
-        var mailerLiteButton = document.getElementById('customMailerLiteButton');
-        if (mailerLiteButton) {
-            mailerLiteButton.addEventListener('click', function() {
+        // MailerLite Event Listener voor je aangepaste a href link
+        var mailerLiteLink = document.getElementById('customMailerLiteLink');
+        if (mailerLiteLink) {
+            mailerLiteLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Voorkomt dat de link naar een andere pagina gaat
                 ml('show', 'fqCekF', true); // Zorg ervoor dat de ID 'fqCekF' correct is
             });
         }
