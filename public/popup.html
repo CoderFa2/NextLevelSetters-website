@@ -982,15 +982,19 @@
   
   <script>
     function ml_webform_success_17452972() {
+    console.log("Success callback triggered");
     try {
         window.top.location.href = 'https://bit.ly/appointmentsettingnls';
-      } catch (e) {
+    } catch (e) {
+        console.log("Error during redirect:", e);
         window.location.href = 'https://bit.ly/appointmentsettingnls';
-      }
     }
+}
+
       </script>
   
-  
+ 
+
   
       <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v2d8fb22bb5b3677f161552cd9e774127" type="text/javascript"></script>
         <script>
